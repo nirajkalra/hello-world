@@ -1,18 +1,25 @@
- # the compiler: gcc for C program, define as g++ for C++
-  CC = gcc
+ appname := sample
+CXX := g++
+CXXFLAGS := -Wall -g
 
-  # compiler flags:
-  #  -g    adds debugging information to the executable file
-  #  -Wall turns on most, but not all, compiler warnings
-  CFLAGS  = -g -Wall
+srcfiles := $(shell find . -maxdepth 1 -name "*.cpp")
+objects  := $(patsubst %.cpp, %.o, $(srcfiles))
 
-  # the build target executable:
-  TARGET = sample
+all: $(appname)
 
-  all: $(TARGET)
+$(appname): $(objects)
+    $(CXX) $(CXXFLAGS) $(LDFLAGS) -o $(appname) $(objects) $(LDLIBS)
 
-  $(TARGET): $(TARGET).c
-  	$(CC) $(CFLAGS) -o $(TARGET) $(TARGET).c
+depend: .depend
 
-  clean:
-  	$(RM) $(TARGET)
+.depend: $(srcfiles)
+    rm -f ./.depend
+    $(CXX) $(CXXFLAGS) -MM $^>>./.depend;
+
+clean:
+    rm -f $(objects)
+
+dist-clean: clean
+   rm -f *~ .depend
+
+include .depend
