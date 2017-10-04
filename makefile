@@ -7,7 +7,7 @@
   CFLAGS  = -g -Wall
 
   # the build target executable:
-  TARGET = myprog
+  TARGET = sample
 
   all: $(TARGET)
 
