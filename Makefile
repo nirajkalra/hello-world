@@ -4,7 +4,8 @@ CC = g++
   	#  -Wall turns on most, but not all, compiler warnings
 CFLAGS  = -g -Wall
 
-sample : sample.o
-	g++ -Wall sample.o -o sample
-sample.o : sample.c
-	g++ -c -Wall sample.cpp -o sample.o
+all: sample.cpp
+	g++ -g -Wall -o sample sample.cpp
+
+clean: 
+	$(RM) sample
