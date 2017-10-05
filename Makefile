@@ -4,13 +4,8 @@ CC = g++
   #  -Wall turns on most, but not all, compiler warnings
 CFLAGS  = -g -Wall
 
-  # the build target executable:
-TARGET = sample
+sample : sample.o
+        gcc -Wall sample.o -o sample
 
-all: $(TARGET)
-
-	$(TARGET): $(TARGET).cpp
-  	$(CC) $(CFLAGS) -o $(TARGET) $(TARGET).cpp
-
-clean:
-  	$(RM) $(TARGET)
+sample.o : sample.c
+        gcc -c -Wall sample.c -o sample.o
