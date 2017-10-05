@@ -1,19 +1,17 @@
-SRC = sample.cpp
-TARGET = bin/parser
-TEST_DIR = test
+SCC = g++
 
-$(TARGET): $(SRC)
-	g++ -o $(TARGET) $(SRC)
+  # compiler flags:
+  #  -g    adds debugging information to the executable file
+  #  -Wall turns on most, but not all, compiler warnings
+  CFLAGS  = -g -Wall
 
-clean:
-	rm -f $(TARGET)
-	make clean -C $(TEST_DIR)
+  # the build target executable:
+  TARGET = sample
 
-test:
-	make -C $(TEST_DIR)
-	# Run tests
-	$(TEST_DIR)/testable_test
-	# Clean up
-	make clean -C $(TEST_DIR)
+  all: $(TARGET)
 
-.PHONY: clean test
+  $(TARGET): $(TARGET).c
+  	$(CC) $(CFLAGS) -o $(TARGET) $(TARGET).c
+
+  clean:
+  	$(RM) $(TARGET)
