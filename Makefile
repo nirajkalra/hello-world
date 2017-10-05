@@ -1,17 +1,17 @@
-SCC = g++
+CC = g++
 
   # compiler flags:
   #  -g    adds debugging information to the executable file
   #  -Wall turns on most, but not all, compiler warnings
-  CFLAGS  = -g -Wall
+CFLAGS  = -g -Wall
 
   # the build target executable:
-  TARGET = sample
+TARGET = sample
 
-  all: $(TARGET)
+all: $(TARGET)
 
   $(TARGET): $(TARGET).c
-  	$(CC) $(CFLAGS) -o $(TARGET) $(TARGET).c
+  $(CC) $(CFLAGS) -o $(TARGET) $(TARGET).c
 
-  clean:
-  	$(RM) $(TARGET)
+clean:
+  $(RM) $(TARGET)
